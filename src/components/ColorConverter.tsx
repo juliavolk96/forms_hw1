@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 
 function ColorConverter() {
-  const [hexColor, setHexColor] = useState('');
-  const [rgbColor, setRgbColor] = useState('');
-  const [error, setError] = useState('');
+  const [hexColor, setHexColor] = useState<string>('');
+  const [rgbColor, setRgbColor] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [inputLength, setInputLength] = useState<number>(0);
 
   const handleHexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    if (isValidHexColor(value)) {
-      setHexColor(value);
-      setError('');
-      updateRgbColor(value);
+    setHexColor(value);
+    setInputLength(value.length);
+
+    if (value.length === 7) {
+      if (isValidHexColor(value)) {
+        setError('');
+        updateRgbColor(value);
+        document.body.style.backgroundColor = value; 
+      } else {
+        setError('Ошибка');
+        document.body.style.backgroundColor = 'red'; 
+      }
     } else {
-      setHexColor(value);
-      setError('Ошибка');
+      setError('');
+      document.body.style.backgroundColor = 'initial';
     }
   };
 
@@ -24,7 +33,6 @@ function ColorConverter() {
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
     setRgbColor(`RGB: ${r}, ${g}, ${b}`);
-    document.body.style.backgroundColor = hex;
   };
 
   return (
