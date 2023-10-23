@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.color-converter {
+  display: flex;
+  text-align: center;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-display {
+  background-color: rgb(219, 219, 219);
+  width: 300px; 
+  min-height: 40px; 
+  height: auto;
+  opacity: 0.5;
+  padding: 10px;
+}
+
+.color-hex {
+  font-size: 16px;
+}
+
+.color-rgb {
+  font-size: 16px;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.error {
+  color: red;
+  font-size: 16px;
+}
+
+input[type="text"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
